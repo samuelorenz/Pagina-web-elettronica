@@ -70,6 +70,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l16 6-16 6z"/><path d="M20 12h2"/></svg>
         <span data-i18n="nav_opamp">Stadio op-amp</span>
       </button>
+      <button class="nav-item" data-nav="kmap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg>
+        <span data-i18n="nav_kmap">Mappe di Karnaugh</span>
+      </button>
     </nav>
   </aside>
 
@@ -130,6 +134,11 @@
           <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l16 6-16 6z"/><path d="M20 12h2"/></svg></div>
           <h3 data-i18n="nav_opamp">Stadio op-amp</h3>
           <p data-i18n="card_opamp_desc">Guadagno, errore di offset in uscita e banda -3dB per stadi invertenti/non invertenti.</p>
+        </div>
+        <div class="tool-card" data-nav="kmap">
+          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg></div>
+          <h3 data-i18n="nav_kmap">Mappe di Karnaugh</h3>
+          <p data-i18n="card_kmap_desc">Minimizzazione booleana con Quine-McCluskey, schema con porte logiche e confronto prima/dopo.</p>
         </div>
       </div>
       <footer class="note" data-i18n="home_footer">Strumento personale in crescita — pensato per un uso rapido durante la progettazione, senza registrazione né tracciamento.</footer>
@@ -1251,6 +1260,120 @@
 
       <footer class="note" data-i18n="op_tool_footer">Budget di errore semplificato (assume nessuna resistenza di compensazione sull'ingresso non invertente): errore ≈ |Vos|·(1+Rf/R1) + |Ib−|·Rf. Banda stimata dal prodotto guadagno-banda (GBW) diviso per il guadagno di rumore (1+Rf/R1).</footer>
     </section>
+
+    <!-- KARNAUGH MAP TOOL -->
+    <section class="view" id="view-kmap">
+      <button class="back-btn" data-nav="home">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+        <span data-i18n="back_btn">Tutte le calcolatrici</span>
+      </button>
+      <div class="tool-header">
+        <div class="tool-title">
+          <h2 data-i18n="nav_kmap">Mappe di Karnaugh</h2>
+          <p data-i18n="km_tool_desc">Minimizzazione booleana (Quine-McCluskey + Petrick) con schema a porte logiche e confronto prima/dopo l'ottimizzazione.</p>
+        </div>
+        <span class="source-tag" data-i18n="km_source_tag">Quine-McCluskey esatto</span>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="km_panel_settings">Impostazioni</h3>
+        <div class="config-row">
+          <div class="field">
+            <label for="kmNumVars" data-i18n="km_lbl_numvars">Numero di variabili</label>
+            <select id="kmNumVars">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="kmVarNames" data-i18n="km_lbl_varnames">Nomi variabili</label>
+            <input type="text" id="kmVarNames" value="A,B,C,D">
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="km_panel_quick">Inserimento rapido</h3>
+        <p class="panel-hint" data-i18n="km_quick_hint">In alternativa a cliccare sulla mappa: elenca gli indici dei mintermini separati da virgola.</p>
+        <div class="config-row">
+          <div class="field">
+            <label for="kmMintermsInput" data-i18n="km_lbl_minterms">Mintermini (uscita 1)</label>
+            <input type="text" id="kmMintermsInput" placeholder="es. 1,3,7,11,15">
+          </div>
+          <div class="field">
+            <label for="kmDontcaresInput" data-i18n="km_lbl_dontcares">Don't care (opzionale)</label>
+            <input type="text" id="kmDontcaresInput" placeholder="es. 0,2">
+          </div>
+        </div>
+        <div class="config-row" style="margin-top:10px;">
+          <button type="button" class="btn ghost" id="kmApplyBtn" style="width:auto;padding:8px 16px;" data-i18n="km_btn_apply">Applica elenco</button>
+          <button type="button" class="btn ghost" id="kmClearBtn" style="width:auto;padding:8px 16px;" data-i18n="km_btn_clear">Azzera mappa</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="km_panel_map">Mappa di Karnaugh</h3>
+        <p class="panel-hint" data-i18n="km_map_hint">Clicca una cella per far scorrere il valore: 0 → 1 → X (don't care) → 0.</p>
+        <div class="kmap-wrap" id="kmGridWrap"></div>
+        <div class="kmap-legend" id="kmLegend"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3 data-i18n="panel_results">Risultati</h3>
+          <button type="button" class="copy-btn" id="kmCopyBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg> <span data-i18n="copy_summary">Copia riepilogo</span></button>
+        </div>
+        <div class="results-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="stat" style="grid-column:1/-1;">
+            <span class="label" data-i18n="km_stat_min">Espressione minimizzata (SOP)</span>
+            <span class="value" id="km-out-min" style="font-size:17px;">–</span>
+          </div>
+          <div class="stat" style="grid-column:1/-1;">
+            <span class="label" data-i18n="km_stat_canonical">Espressione canonica (non ottimizzata)</span>
+            <span class="value sm" id="km-out-canonical">–</span>
+          </div>
+        </div>
+        <div class="results-grid" style="margin-top:12px;">
+          <div class="stat">
+            <span class="label" data-i18n="km_stat_terms">Termini (AND)</span>
+            <span class="value" id="km-out-terms">–</span>
+          </div>
+          <div class="stat">
+            <span class="label" data-i18n="km_stat_literals">Letterali totali</span>
+            <span class="value" id="km-out-literals">–</span>
+          </div>
+          <div class="stat">
+            <span class="label" data-i18n="km_stat_gates">Porte logiche</span>
+            <span class="value" id="km-out-gates">–</span>
+            <span class="pill good" id="km-pill-gates"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="panel_checks">Verifiche e note</h3>
+        <div class="checks" id="kmChecks"></div>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="km_panel_gates_opt">Circuito ottimizzato</h3>
+        <p class="panel-hint" data-i18n="km_gates_opt_hint">Realizzazione a 2 livelli (AND-OR) dell'espressione minimizzata.</p>
+        <div class="chart-wrap">
+          <svg class="gates" id="kmGatesOpt" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="km_panel_gates_unopt">Circuito non ottimizzato (forma canonica)</h3>
+        <p class="panel-hint" data-i18n="km_gates_unopt_hint">Un termine AND per ogni mintermine dichiarato a 1, prima di qualunque semplificazione.</p>
+        <div class="chart-wrap">
+          <svg class="gates" id="kmGatesUnopt" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+      </div>
+
+      <footer class="note" data-i18n="km_tool_footer">Minimizzazione a due livelli (somma di prodotti) tramite Quine-McCluskey con selezione dei prime implicanti essenziali e metodo di Petrick per la copertura ottima dei mintermini restanti. Supporta fino a 4 variabili.</footer>
+    </section>
   </main>
 </div>
 
@@ -1266,4 +1389,6 @@
 <script src="js/tool-converter.js"></script>
 <script src="js/tool-pcbtrace.js"></script>
 <script src="js/tool-opamp.js"></script>
+<script src="js/qm.js"></script>
+<script src="js/tool-kmap.js"></script>
 <script src="js/app.js"></script>
