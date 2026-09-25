@@ -1,12 +1,11 @@
 /**
  * tool-kmap.js — Karnaugh map editor: click-to-cycle grid (0/1/X), exact
  * Quine-McCluskey + Petrick minimization (js/qm.js), a colored group overlay
- * on the map, and a generated 2-level AND-OR logic-gate schematic — both the
- * minimized circuit and the unoptimized canonical one, for comparison.
+ * on the map, and a canonical-vs-minimized comparison (terms/literals/gate count).
  */
 (function(EC){
   "use strict";
-  var t = EC.t, fmt = EC.fmt, iconFor = EC.iconFor, svgNS = EC.svgNS;
+  var t = EC.t, fmt = EC.fmt, iconFor = EC.iconFor;
   var iconGood = EC.icons.good;
   var qm = EC.qm;
 
@@ -136,153 +135,6 @@
     }).join(" + ");
   }
 
-  // ================= logic gate schematic =================
-  function svgEl(svg, tag, attrs){
-    var e = document.createElementNS(svgNS, tag);
-    Object.keys(attrs).forEach(function(k){ e.setAttribute(k, attrs[k]); });
-    svg.appendChild(e);
-    return e;
-  }
-  function wire(svg, pts){
-    var d = pts.map(function(p,i){ return (i===0?"M":"L")+p[0]+","+p[1]; }).join(" ");
-    svgEl(svg,"path",{ d:d, class:"gate-wire" });
-  }
-  function dot(svg,x,y){ svgEl(svg,"circle",{ cx:x, cy:y, r:2.6, class:"gate-dot" }); }
-
-  function notGate(svg, x, y){
-    var gx = x+16, w=24, h=16;
-    dot(svg, x, y);
-    wire(svg, [[x,y],[gx,y]]);
-    svgEl(svg,"path",{ d:"M "+gx+","+(y-h/2)+" L "+gx+","+(y+h/2)+" L "+(gx+w)+","+y+" Z", class:"gate-shape" });
-    var bubbleX = gx+w+4;
-    svgEl(svg,"circle",{ cx:bubbleX, cy:y, r:4, class:"gate-bubble" });
-    return { outX:bubbleX+4, outY:y };
-  }
-  function andGate(svg, x, yTop, yBot){
-    var flat = 26, r = (yBot-yTop)/2, cy = (yTop+yBot)/2, midX = x+flat;
-    svgEl(svg,"path",{ d:"M "+x+","+yTop+" L "+midX+","+yTop+" A "+r+","+r+" 0 1 1 "+midX+","+yBot+" L "+x+","+yBot+" Z", class:"gate-shape" });
-    return { outX: midX+r, outY: cy };
-  }
-  function orGate(svg, x, yTop, yBot){
-    var w=70, midY=(yTop+yBot)/2, back=w*0.18, tipX=x+w;
-    var d = "M "+x+","+yTop+" Q "+(x+w*0.55)+","+yTop+" "+tipX+","+midY+
-            " Q "+(x+w*0.55)+","+yBot+" "+x+","+yBot+
-            " Q "+(x+back)+","+midY+" "+x+","+yTop+" Z";
-    svgEl(svg,"path",{ d:d, class:"gate-shape" });
-    return { outX:tipX, outY:midY, inX:x+back*0.7 };
-  }
-
-  function buildGateSVG(svg, terms, names){
-    svg.innerHTML = "";
-    var isZero = terms.length===0;
-    var isOne = terms.length===1 && qm.countLiterals(terms[0].bits)===0;
-
-    if(isZero || isOne){
-      svg.setAttribute("viewBox","0 0 260 90");
-      var txt = svgEl(svg,"text",{ x:20, y:50, class:"gate-const" });
-      txt.textContent = "F = " + (isOne ? "1" : "0");
-      return;
-    }
-
-    var termData = terms.map(function(term){
-      var lits = [];
-      for(var i=0;i<numVars;i++){
-        if(term.bits[i]!=="-") lits.push({ varIndex:i, neg: term.bits[i]==="0" });
-      }
-      return { literals: lits };
-    });
-
-    var usedTrue = new Array(numVars).fill(false), usedComp = new Array(numVars).fill(false);
-    termData.forEach(function(td){
-      td.literals.forEach(function(l){ if(l.neg) usedComp[l.varIndex]=true; else usedTrue[l.varIndex]=true; });
-    });
-    var usedVars = [];
-    for(var v=0; v<numVars; v++){ if(usedTrue[v]||usedComp[v]) usedVars.push(v); }
-
-    var slotW = 90, leftMargin = 24, busTop = 60, notY = 92, gateGapY = 22;
-    var varX = {};
-    usedVars.forEach(function(v,p){
-      var base = leftMargin + p*slotW;
-      varX[v] = { trueX: base+18, compX: base+70 };
-    });
-
-    var gateColX = leftMargin + usedVars.length*slotW + 30;
-
-    var cursorY = busTop;
-    termData.forEach(function(td){
-      var L = td.literals.length;
-      var h = L>=2 ? Math.max(40, L*18) : 30;
-      td.topY = cursorY; td.bottomY = cursorY+h; td.centerY = (td.topY+td.bottomY)/2;
-      cursorY = td.bottomY + gateGapY;
-    });
-    var busBottom = cursorY - gateGapY;
-    var maxH = Math.max.apply(null, termData.map(function(td){ return td.bottomY-td.topY; }));
-
-    var andFlat = 26;
-    var andOutX = gateColX + andFlat + maxH/2;
-    var orGapX = 70;
-    var orX = andOutX + orGapX;
-    var orW = 70;
-    var outX = orX + orW + 60;
-    var totalHeight = busBottom + 30;
-    var totalWidth = outX + 40;
-    svg.setAttribute("viewBox", "0 0 "+totalWidth+" "+totalHeight);
-
-    usedVars.forEach(function(v){
-      var tx = varX[v].trueX;
-      var lbl = svgEl(svg,"text",{ x:tx, y:22, "text-anchor":"middle", class:"gate-label" });
-      lbl.textContent = names[v];
-      wire(svg, [[tx,30],[tx,busTop]]);
-      var trueBottom = usedTrue[v] ? busBottom : notY;
-      wire(svg, [[tx,busTop],[tx,trueBottom]]);
-      if(usedComp[v]){
-        var nres = notGate(svg, tx, notY);
-        wire(svg, [[nres.outX,nres.outY],[varX[v].compX,notY]]);
-        wire(svg, [[varX[v].compX,notY],[varX[v].compX,busBottom]]);
-      }
-    });
-
-    termData.forEach(function(td){
-      var L = td.literals.length;
-      if(L>=2){
-        var g = andGate(svg, gateColX, td.topY, td.bottomY);
-        td.literals.forEach(function(lit, idx){
-          var py = td.topY + (td.bottomY-td.topY)*((idx+1)/(L+1));
-          var busX = lit.neg ? varX[lit.varIndex].compX : varX[lit.varIndex].trueX;
-          dot(svg, busX, py);
-          wire(svg, [[busX,py],[gateColX,py]]);
-        });
-        if(g.outX < andOutX) wire(svg, [[g.outX,g.outY],[andOutX,g.outY]]);
-        td.outX = andOutX; td.outY = g.outY;
-      } else {
-        var lit = td.literals[0];
-        var busX = lit.neg ? varX[lit.varIndex].compX : varX[lit.varIndex].trueX;
-        dot(svg, busX, td.centerY);
-        wire(svg, [[busX,td.centerY],[andOutX,td.centerY]]);
-        td.outX = andOutX; td.outY = td.centerY;
-      }
-    });
-
-    var finalX, finalY;
-    if(termData.length===1){
-      finalX = termData[0].outX; finalY = termData[0].outY;
-    } else {
-      var orH = Math.max(termData.length*26, 40);
-      var orTop = (busTop+busBottom)/2 - orH/2, orBot = orTop+orH;
-      var orRes = orGate(svg, orX, orTop, orBot);
-      termData.forEach(function(td, idx){
-        var inY = orTop + orH*((idx+1)/(termData.length+1));
-        var midX = andOutX + orGapX/2;
-        wire(svg, [[td.outX,td.outY],[midX,td.outY],[midX,inY],[orRes.inX,inY]]);
-      });
-      finalX = orRes.outX; finalY = orRes.outY;
-    }
-    wire(svg, [[finalX,finalY],[outX-20,finalY]]);
-    dot(svg, outX-20, finalY);
-    var flbl = svgEl(svg,"text",{ x:outX-12, y:finalY+4, class:"gate-label" });
-    flbl.textContent = "F";
-  }
-
   // ================= main render =================
   function gateCountOf(terms){
     var and = terms.filter(function(term){ return qm.countLiterals(term.bits)>=2; }).length;
@@ -353,9 +205,6 @@
       div.innerHTML = (c.status==="info"?iconGood:iconFor(c.status)) + "<span>" + fmt(c.key,{v:c.v,t:c.t,before:c.before,after:c.after,pct:c.pct}) + "</span>";
       checksEl.appendChild(div);
     });
-
-    buildGateSVG(document.getElementById("kmGatesOpt"), minimized.terms, names);
-    buildGateSVG(document.getElementById("kmGatesUnopt"), canonicalTerms, names);
   }
 
   function buildSummary(){

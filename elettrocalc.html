@@ -25,23 +25,28 @@
       <button type="button" class="theme-btn" data-theme-mode="dark" data-i18n="theme_dark">Scuro</button>
     </div>
     <nav class="tools">
-      <div class="nav-label" data-i18n="nav_label">Calcolatrici</div>
       <button class="nav-item" data-nav="home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
         <span data-i18n="nav_home">Home</span>
       </button>
+
+      <div class="nav-label" data-i18n="cat_osc">Oscillatori</div>
       <button class="nav-item" data-nav="crystal">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M8 3v4M16 3v4M8 17v4M16 17v4"/></svg>
         <span data-i18n="nav_crystal">Oscillatore a quarzo</span>
       </button>
-      <button class="nav-item" data-nav="thermo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a4 4 0 00-4 4v6a4 4 0 008 0V7a4 4 0 00-4-4z"/><path d="M8 15a4 4 0 108 0"/><circle cx="12" cy="19" r="2"/></svg>
-        <span data-i18n="nav_thermo">Termocoppia</span>
-      </button>
+
+      <div class="nav-label" data-i18n="cat_filters">Filtri</div>
       <button class="nav-item" data-nav="rcfilter">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h4l2-7 4 14 2-7h4"/></svg>
         <span data-i18n="nav_rc">Filtro RC</span>
       </button>
+      <button class="nav-item" data-nav="pifilter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9M4 9h4v10M8 19V5h4v14M12 9h4v10M16 19V9h4v10"/></svg>
+        <span data-i18n="nav_pifilter">Filtro a π</span>
+      </button>
+
+      <div class="nav-label" data-i18n="cat_dividers">Partitori e tolleranze</div>
       <button class="nav-item" data-nav="divider">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
         <span data-i18n="nav_divider">Partitore resistivo</span>
@@ -50,10 +55,8 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4v16M16 4v16" stroke-dasharray="3 3"/><path d="M2 9h6M16 9h6M2 15h6M16 15h6"/></svg>
         <span data-i18n="nav_capdivider">Partitore capacitivo</span>
       </button>
-      <button class="nav-item" data-nav="pifilter">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9M4 9h4v10M8 19V5h4v14M12 9h4v10M16 19V9h4v10"/></svg>
-        <span data-i18n="nav_pifilter">Filtro a π</span>
-      </button>
+
+      <div class="nav-label" data-i18n="cat_power">Alimentazione</div>
       <button class="nav-item" data-nav="ldo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l4-8 4 5 3-9 4 12H3z"/></svg>
         <span data-i18n="nav_ldo">Dissipazione LDO</span>
@@ -62,14 +65,24 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 15l3-6 3 6 3-10 3 10 3-6 3 6"/></svg>
         <span data-i18n="nav_converter">Convertitore switching</span>
       </button>
-      <button class="nav-item" data-nav="pcbtrace">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h6v6h6v6"/><circle cx="4" cy="6" r="1.6"/><circle cx="20" cy="18" r="1.6"/></svg>
-        <span data-i18n="nav_pcbtrace">Traccia PCB</span>
+
+      <div class="nav-label" data-i18n="cat_acquisition">Acquisizione dati</div>
+      <button class="nav-item" data-nav="thermo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a4 4 0 00-4 4v6a4 4 0 008 0V7a4 4 0 00-4-4z"/><path d="M8 15a4 4 0 108 0"/><circle cx="12" cy="19" r="2"/></svg>
+        <span data-i18n="nav_thermo">Termocoppia</span>
       </button>
       <button class="nav-item" data-nav="opamp">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l16 6-16 6z"/><path d="M20 12h2"/></svg>
         <span data-i18n="nav_opamp">Stadio op-amp</span>
       </button>
+
+      <div class="nav-label" data-i18n="cat_pcb">PCB</div>
+      <button class="nav-item" data-nav="pcbtrace">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h6v6h6v6"/><circle cx="4" cy="6" r="1.6"/><circle cx="20" cy="18" r="1.6"/></svg>
+        <span data-i18n="nav_pcbtrace">Traccia PCB</span>
+      </button>
+
+      <div class="nav-label" data-i18n="cat_digital">Logica digitale</div>
       <button class="nav-item" data-nav="kmap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg>
         <span data-i18n="nav_kmap">Mappe di Karnaugh</span>
@@ -84,63 +97,103 @@
         <h1 data-i18n="hero_title">Calcolatrici per la progettazione elettronica</h1>
         <p data-i18n="hero_desc">Una raccolta di strumenti tecnici pensati per il lavoro quotidiano su schede e firmware: si parte dal dimensionamento dell'oscillatore a quarzo, altri strumenti si aggiungono nel tempo.</p>
       </div>
-      <div class="card-grid">
-        <div class="tool-card" data-nav="crystal">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M8 3v4M16 3v4M8 17v4M16 17v4"/></svg></div>
-          <h3 data-i18n="nav_crystal">Oscillatore a quarzo</h3>
-          <p data-i18n="card_crystal_desc">Capacità di carico, margine di guadagno e drive level secondo ST AN2867.</p>
+      <section class="cat-section">
+        <h2 class="cat-title" data-i18n="cat_osc">Oscillatori</h2>
+        <div class="card-grid">
+          <div class="tool-card" data-nav="crystal">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M8 3v4M16 3v4M8 17v4M16 17v4"/></svg></div>
+            <h3 data-i18n="nav_crystal">Oscillatore a quarzo</h3>
+            <p data-i18n="card_crystal_desc">Capacità di carico, margine di guadagno e drive level secondo ST AN2867.</p>
+          </div>
         </div>
-        <div class="tool-card" data-nav="thermo">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a4 4 0 00-4 4v6a4 4 0 008 0V7a4 4 0 00-4-4z"/><path d="M8 15a4 4 0 108 0"/><circle cx="12" cy="19" r="2"/></svg></div>
-          <h3 data-i18n="nav_thermo">Termocoppia</h3>
-          <p data-i18n="card_thermo_desc">Tensione di Seebeck, compensazione di giunto freddo e catena ADC.</p>
+      </section>
+
+      <section class="cat-section">
+        <h2 class="cat-title" data-i18n="cat_filters">Filtri</h2>
+        <div class="card-grid">
+          <div class="tool-card" data-nav="rcfilter">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h4l2-7 4 14 2-7h4"/></svg></div>
+            <h3 data-i18n="nav_rc">Filtro RC</h3>
+            <p data-i18n="card_rc_desc">Frequenza di taglio e risposta di filtri passa-basso/alto RC.</p>
+          </div>
+          <div class="tool-card" data-nav="pifilter">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9M4 9h4v10M8 19V5h4v14M12 9h4v10M16 19V9h4v10"/></svg></div>
+            <h3 data-i18n="nav_pifilter">Filtro a π</h3>
+            <p data-i18n="card_pifilter_desc">Attenuazione del ripple e risposta in frequenza di filtri LC a π.</p>
+          </div>
         </div>
-        <div class="tool-card" data-nav="rcfilter">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h4l2-7 4 14 2-7h4"/></svg></div>
-          <h3 data-i18n="nav_rc">Filtro RC</h3>
-          <p data-i18n="card_rc_desc">Frequenza di taglio e risposta di filtri passa-basso/alto RC.</p>
+      </section>
+
+      <section class="cat-section">
+        <h2 class="cat-title" data-i18n="cat_dividers">Partitori e tolleranze</h2>
+        <div class="card-grid">
+          <div class="tool-card" data-nav="divider">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+            <h3 data-i18n="nav_divider">Partitore resistivo</h3>
+            <p data-i18n="card_divider_desc">Dimensionamento di partitori di tensione con analisi Monte Carlo delle tolleranze.</p>
+          </div>
+          <div class="tool-card" data-nav="capdivider">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4v16M16 4v16" stroke-dasharray="3 3"/><path d="M2 9h6M16 9h6M2 15h6M16 15h6"/></svg></div>
+            <h3 data-i18n="nav_capdivider">Partitore capacitivo</h3>
+            <p data-i18n="card_capdivider_desc">Partitore AC con tolleranze asimmetriche dei dielettrici ceramici e Monte Carlo.</p>
+          </div>
         </div>
-        <div class="tool-card" data-nav="divider">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
-          <h3 data-i18n="nav_divider">Partitore resistivo</h3>
-          <p data-i18n="card_divider_desc">Dimensionamento di partitori di tensione con analisi Monte Carlo delle tolleranze.</p>
+      </section>
+
+      <section class="cat-section">
+        <h2 class="cat-title" data-i18n="cat_power">Alimentazione</h2>
+        <div class="card-grid">
+          <div class="tool-card" data-nav="ldo">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l4-8 4 5 3-9 4 12H3z"/></svg></div>
+            <h3 data-i18n="nav_ldo">Dissipazione LDO</h3>
+            <p data-i18n="card_ldo_desc">Potenza dissipata, temperatura di giunzione e corrente massima per regolatori lineari.</p>
+          </div>
+          <div class="tool-card" data-nav="converter">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 15l3-6 3 6 3-10 3 10 3-6 3 6"/></svg></div>
+            <h3 data-i18n="nav_converter">Convertitore switching</h3>
+            <p data-i18n="card_converter_desc">Ripple di induttore e di uscita per convertitori buck e boost in CCM.</p>
+          </div>
         </div>
-        <div class="tool-card" data-nav="capdivider">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4v16M16 4v16" stroke-dasharray="3 3"/><path d="M2 9h6M16 9h6M2 15h6M16 15h6"/></svg></div>
-          <h3 data-i18n="nav_capdivider">Partitore capacitivo</h3>
-          <p data-i18n="card_capdivider_desc">Partitore AC con tolleranze asimmetriche dei dielettrici ceramici e Monte Carlo.</p>
+      </section>
+
+      <section class="cat-section">
+        <h2 class="cat-title" data-i18n="cat_acquisition">Acquisizione dati</h2>
+        <div class="card-grid">
+          <div class="tool-card" data-nav="thermo">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a4 4 0 00-4 4v6a4 4 0 008 0V7a4 4 0 00-4-4z"/><path d="M8 15a4 4 0 108 0"/><circle cx="12" cy="19" r="2"/></svg></div>
+            <h3 data-i18n="nav_thermo">Termocoppia</h3>
+            <p data-i18n="card_thermo_desc">Tensione di Seebeck, compensazione di giunto freddo e catena ADC.</p>
+          </div>
+          <div class="tool-card" data-nav="opamp">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l16 6-16 6z"/><path d="M20 12h2"/></svg></div>
+            <h3 data-i18n="nav_opamp">Stadio op-amp</h3>
+            <p data-i18n="card_opamp_desc">Guadagno, errore di offset in uscita e banda -3dB per stadi invertenti/non invertenti.</p>
+          </div>
         </div>
-        <div class="tool-card" data-nav="pifilter">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9M4 9h4v10M8 19V5h4v14M12 9h4v10M16 19V9h4v10"/></svg></div>
-          <h3 data-i18n="nav_pifilter">Filtro a π</h3>
-          <p data-i18n="card_pifilter_desc">Attenuazione del ripple e risposta in frequenza di filtri LC a π.</p>
+      </section>
+
+      <section class="cat-section">
+        <h2 class="cat-title" data-i18n="cat_pcb">PCB</h2>
+        <div class="card-grid">
+          <div class="tool-card" data-nav="pcbtrace">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h6v6h6v6"/><circle cx="4" cy="6" r="1.6"/><circle cx="20" cy="18" r="1.6"/></svg></div>
+            <h3 data-i18n="nav_pcbtrace">Traccia PCB</h3>
+            <p data-i18n="card_pcbtrace_desc">Larghezza di pista da corrente e ΔT secondo IPC-2221, con caduta di tensione.</p>
+          </div>
         </div>
-        <div class="tool-card" data-nav="ldo">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l4-8 4 5 3-9 4 12H3z"/></svg></div>
-          <h3 data-i18n="nav_ldo">Dissipazione LDO</h3>
-          <p data-i18n="card_ldo_desc">Potenza dissipata, temperatura di giunzione e corrente massima per regolatori lineari.</p>
+      </section>
+
+      <section class="cat-section">
+        <h2 class="cat-title" data-i18n="cat_digital">Logica digitale</h2>
+        <div class="card-grid">
+          <div class="tool-card" data-nav="kmap">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg></div>
+            <h3 data-i18n="nav_kmap">Mappe di Karnaugh</h3>
+            <p data-i18n="card_kmap_desc">Minimizzazione booleana con Quine-McCluskey, mappa a gruppi colorati e confronto prima/dopo l'ottimizzazione.</p>
+          </div>
         </div>
-        <div class="tool-card" data-nav="converter">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 15l3-6 3 6 3-10 3 10 3-6 3 6"/></svg></div>
-          <h3 data-i18n="nav_converter">Convertitore switching</h3>
-          <p data-i18n="card_converter_desc">Ripple di induttore e di uscita per convertitori buck e boost in CCM.</p>
-        </div>
-        <div class="tool-card" data-nav="pcbtrace">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h6v6h6v6"/><circle cx="4" cy="6" r="1.6"/><circle cx="20" cy="18" r="1.6"/></svg></div>
-          <h3 data-i18n="nav_pcbtrace">Traccia PCB</h3>
-          <p data-i18n="card_pcbtrace_desc">Larghezza di pista da corrente e ΔT secondo IPC-2221, con caduta di tensione.</p>
-        </div>
-        <div class="tool-card" data-nav="opamp">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l16 6-16 6z"/><path d="M20 12h2"/></svg></div>
-          <h3 data-i18n="nav_opamp">Stadio op-amp</h3>
-          <p data-i18n="card_opamp_desc">Guadagno, errore di offset in uscita e banda -3dB per stadi invertenti/non invertenti.</p>
-        </div>
-        <div class="tool-card" data-nav="kmap">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg></div>
-          <h3 data-i18n="nav_kmap">Mappe di Karnaugh</h3>
-          <p data-i18n="card_kmap_desc">Minimizzazione booleana con Quine-McCluskey, schema con porte logiche e confronto prima/dopo.</p>
-        </div>
-      </div>
+      </section>
+
       <footer class="note" data-i18n="home_footer">Strumento personale in crescita — pensato per un uso rapido durante la progettazione, senza registrazione né tracciamento.</footer>
     </section>
 
@@ -156,6 +209,17 @@
           <p data-i18n="tool_desc">Dimensionamento dei condensatori di carico e verifica di avviamento per oscillatori al quarzo su MCU.</p>
         </div>
         <span class="source-tag" data-i18n="source_tag">Formule: ST AN2867</span>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="cry_theory_p1">In un oscillatore Pierce l'amplificatore interno dell'MCU (transconduttanza gm) deve superare di un margine adeguato il gm critico necessario per innescare l'oscillazione: con un margine troppo basso il circuito può non avviarsi, specialmente a basse temperature o tensioni di alimentazione ridotte.</p>
+          <div class="formula">C<sub>L</sub> = (C1 · C2) / (C1 + C2) + C<sub>stray</sub><span class="desc" data-i18n="cry_f1_desc">Capacità di carico vista dal quarzo</span></div>
+          <div class="formula">gm<sub>crit</sub> = 4 · ESR · (2πf)² · (C0 + C<sub>L</sub>)²<span class="desc" data-i18n="cry_f2_desc">Transconduttanza minima per l'avvio (AN2867)</span></div>
+          <p data-i18n="cry_theory_p2">Il drive level è la potenza dissipata nel cristallo. Se supera il limite dichiarato dal produttore, il quarzo può invecchiare più rapidamente (deriva di frequenza) o danneggiarsi fisicamente nel tempo.</p>
+          <div class="formula">DL ≈ ESR · (π · f · C<sub>tot</sub> · V<sub>pp</sub>)² / 2<span class="desc" data-i18n="cry_f3_desc">Drive level dissipato nel cristallo</span></div>
+        </div>
       </div>
 
       <div class="panel">
@@ -299,6 +363,18 @@
       </div>
 
       <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="dv_theory_p1">Un partitore resistivo restituisce una frazione fissa della tensione d'ingresso. Un carico R<sub>L</sub> in parallelo a R2 abbassa Vout rispetto al valore a vuoto (effetto di carico): più R<sub>L</sub> è vicino a R2, più l'effetto è marcato.</p>
+          <div class="formula-row">
+            <div class="formula">V<sub>out</sub> = V<sub>in</sub> · R2 / (R1 + R2)<span class="desc" data-i18n="dv_f1_desc">Partitore a vuoto</span></div>
+            <div class="formula">V<sub>out</sub> = V<sub>in</sub> · (R2∥R<sub>L</sub>) / (R1 + R2∥R<sub>L</sub>)<span class="desc" data-i18n="dv_f2_desc">Con carico R_L in parallelo a R2</span></div>
+          </div>
+          <p data-i18n="dv_theory_p2">Le tolleranze reali dei resistori si combinano statisticamente. Il metodo Monte Carlo campiona molte combinazioni casuali per stimare la vera dispersione di Vout, più realistica della semplice analisi worst-case (che assume il caso peggiore assoluto, statisticamente raro se i resistori sono molti).</p>
+        </div>
+      </div>
+
+      <div class="panel">
         <h3 data-i18n="panel_inputs">Parametri di ingresso</h3>
         <div class="input-grid" id="dvInputGrid">
           <div class="field">
@@ -433,6 +509,16 @@
       </div>
 
       <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="pf_theory_p1">In un raddrizzatore a condensatore d'ingresso, il primo condensatore C1 accumula un ripple di tensione proporzionale alla corrente di carico e inversamente proporzionale alla frequenza di ripple e alla capacità stessa.</p>
+          <div class="formula">V<sub>pp</sub>(C1) ≈ I<sub>dc</sub> / (f · C1)<span class="desc" data-i18n="pf_f1_desc">Ripple stimato sul primo condensatore</span></div>
+          <p data-i18n="pf_theory_p2">Lo stadio L-C2 successivo agisce come un partitore reattivo: alla frequenza di risonanza f0 l'impedenza dell'induttore e quella del condensatore si compensano, causando un picco anziché un'attenuazione. Per questo la frequenza di ripple deve restare ben al di sopra di f0.</p>
+          <div class="formula">f0 = 1 / (2π√(L · C2))<span class="desc" data-i18n="pf_f2_desc">Risonanza dello stadio L-C2</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
         <h3 data-i18n="panel_inputs">Parametri di ingresso</h3>
         <div class="input-grid" id="pfInputGrid">
           <div class="field">
@@ -523,6 +609,16 @@
           <p data-i18n="th_tool_desc">Tensione di Seebeck, compensazione di giunto freddo e catena di acquisizione ADC.</p>
         </div>
         <span class="source-tag" data-i18n="th_source_tag">Approssimazione lineare</span>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="th_theory_p1">Una termocoppia genera una piccola tensione (effetto Seebeck) proporzionale alla differenza di temperatura tra il giunto caldo e il giunto di riferimento. Senza una corretta compensazione di giunto freddo, la lettura è sistematicamente sfalsata.</p>
+          <div class="formula">V<sub>tc</sub> = S · (T − T<sub>cj</sub>)<span class="desc" data-i18n="th_f1_desc">Tensione generata (approssimazione lineare)</span></div>
+          <p data-i18n="th_theory_p2">Il coefficiente di Seebeck non è realmente costante su tutto il range di temperatura; l'approssimazione lineare usata qui è adeguata per dimensionare guadagno e risoluzione dell'ADC, non per la precisione finale della misura.</p>
+          <div class="formula">codice = (V<sub>tc</sub> · G / V<sub>ref</sub>) · 2<sup>n</sup><span class="desc" data-i18n="th_f2_desc">Conversione ADC a n bit</span></div>
+        </div>
       </div>
 
       <div class="panel">
@@ -632,6 +728,18 @@
       </div>
 
       <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="rc_theory_p1">Un filtro RC del primo ordine attenua le frequenze oltre la frequenza di taglio f_c con una pendenza di 20 dB per decade, introducendo anche uno sfasamento che varia gradualmente tra 0° e ±90°.</p>
+          <div class="formula">f<sub>c</sub> = 1 / (2π R C)<span class="desc" data-i18n="rc_f1_desc">Frequenza di taglio (-3 dB)</span></div>
+          <div class="formula-row">
+            <div class="formula">|H(f)| = 1 / √(1+(f/f<sub>c</sub>)²)<span class="desc" data-i18n="rc_f2_desc">Risposta passa-basso</span></div>
+            <div class="formula">|H(f)| = (f/f<sub>c</sub>) / √(1+(f/f<sub>c</sub>)²)<span class="desc" data-i18n="rc_f3_desc">Risposta passa-alto</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
         <h3 data-i18n="panel_inputs">Parametri di ingresso</h3>
         <div class="config-row" style="margin-bottom:14px;">
           <div class="field">
@@ -717,6 +825,15 @@
           <p data-i18n="cd_tool_desc">Partitore AC di due condensatori in serie, con tolleranze (anche asimmetriche) e analisi Monte Carlo.</p>
         </div>
         <span class="source-tag" data-i18n="dv_source_tag">Metodo: Monte Carlo</span>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="cd_theory_p1">In un partitore capacitivo ideale (senza perdite) il rapporto di partizione dipende solo dal rapporto tra le capacità, non dalla frequenza — a differenza del partitore resistivo, qui Vout cresce con C1 (il condensatore in serie), non con C2.</p>
+          <div class="formula">V<sub>out</sub> = V<sub>in</sub> · C1 / (C1 + C2 + C<sub>load</sub>)<span class="desc" data-i18n="cd_f1_desc">Partitore capacitivo con carico</span></div>
+          <p data-i18n="cd_theory_p2">Una capacità di carico in parallelo a C2 (ad esempio l'ingresso di un ADC o di una sonda) si somma a C2 e abbassa Vout: è spesso la causa dominante di errore nelle misure reali.</p>
+        </div>
       </div>
 
       <div class="panel">
@@ -859,6 +976,16 @@
       </div>
 
       <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="ldo_theory_p1">Un regolatore lineare dissipa come calore tutta la differenza di tensione tra ingresso e uscita moltiplicata per la corrente di carico: più alto è il dropout (Vin−Vout), maggiore è la potenza da smaltire.</p>
+          <div class="formula">P<sub>diss</sub> = (V<sub>in</sub> − V<sub>out</sub>) · I<sub>out</sub> + V<sub>in</sub> · I<sub>q</sub><span class="desc" data-i18n="ldo_f1_desc">Potenza dissipata dal regolatore</span></div>
+          <p data-i18n="ldo_theory_p2">La temperatura di giunzione dipende dalla resistenza termica totale θJA tra il chip e l'ambiente: un package migliore o un dissipatore riducono θJA e quindi Tj a parità di potenza dissipata.</p>
+          <div class="formula">T<sub>j</sub> = T<sub>amb</sub> + P<sub>diss</sub> · θ<sub>JA</sub><span class="desc" data-i18n="ldo_f2_desc">Temperatura di giunzione in regime permanente</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
         <h3 data-i18n="panel_presets">Preset rapidi</h3>
         <div class="preset-row">
           <div class="field">
@@ -972,6 +1099,22 @@
       </div>
 
       <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="conv_theory_p1">In un convertitore switching ideale (senza perdite) la potenza in ingresso eguaglia quella in uscita; il duty cycle stabilisce il rapporto tra Vin e Vout.</p>
+          <div class="formula-row">
+            <div class="formula">D = V<sub>out</sub> / V<sub>in</sub><span class="desc" data-i18n="conv_f1_desc">Duty cycle (buck)</span></div>
+            <div class="formula">ΔI<sub>L</sub> = (V<sub>in</sub>−V<sub>out</sub>) · D / (f<sub>sw</sub> · L)<span class="desc" data-i18n="conv_f2_desc">Ripple di corrente nell'induttore (buck)</span></div>
+          </div>
+          <div class="formula-row">
+            <div class="formula">D = 1 − V<sub>in</sub> / V<sub>out</sub><span class="desc" data-i18n="conv_f3_desc">Duty cycle (boost)</span></div>
+            <div class="formula">ΔI<sub>L</sub> = V<sub>in</sub> · D / (f<sub>sw</sub> · L)<span class="desc" data-i18n="conv_f4_desc">Ripple di corrente nell'induttore (boost)</span></div>
+          </div>
+          <p data-i18n="conv_theory_p2">In conduzione continua (CCM) la corrente nell'induttore non si azzera mai durante il ciclo. Se il carico è troppo basso o l'induttanza troppo piccola, il convertitore passa in conduzione discontinua (DCM) e le formule di ripple qui usate non sono più valide.</p>
+        </div>
+      </div>
+
+      <div class="panel">
         <h3 data-i18n="panel_inputs">Parametri di ingresso</h3>
         <div class="config-row" style="margin-bottom:14px;">
           <div class="field">
@@ -1077,6 +1220,16 @@
       </div>
 
       <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="pcb_theory_p1">La norma IPC-2221 lega la sezione minima di una pista di rame alla corrente che deve portare e all'aumento di temperatura che si è disposti ad accettare, con una relazione empirica ricavata da misure sperimentali, non da un modello teorico.</p>
+          <div class="formula">I = k · ΔT<sup>0.44</sup> · A<sup>0.725</sup><span class="desc" data-i18n="pcb_f1_desc">k = 0.048 (strato esterno), 0.024 (strato interno) — A in mil²</span></div>
+          <p data-i18n="pcb_theory_p2">Una volta nota la sezione, la resistenza della pista dipende dalla sua lunghezza: piste lunghe o strette introducono cadute di tensione non trascurabili, specialmente in applicazioni di potenza.</p>
+          <div class="formula">R = ρ · L / (W · t)<span class="desc" data-i18n="pcb_f2_desc">Resistenza della pista (ρ rame ≈ 1.68×10⁻⁸ Ω·m)</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
         <h3 data-i18n="panel_inputs">Parametri di ingresso</h3>
         <div class="input-grid" id="pcbInputGrid">
           <div class="field">
@@ -1166,6 +1319,20 @@
           <p data-i18n="op_tool_desc">Guadagno, budget di errore di offset in uscita e banda -3dB per uno stadio invertente o non invertente.</p>
         </div>
         <span class="source-tag" data-i18n="op_source_tag">Modello del 1° ordine</span>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="op_theory_p1">Il guadagno di uno stadio con retroazione resistiva dipende solo dal rapporto tra Rf e R1, non dal guadagno ad anello aperto dell'op-amp (purché sia molto elevato, come nella pratica).</p>
+          <div class="formula-row">
+            <div class="formula">G = 1 + Rf/R1<span class="desc" data-i18n="op_f1_desc">Guadagno non invertente</span></div>
+            <div class="formula">G = − Rf/R1<span class="desc" data-i18n="op_f2_desc">Guadagno invertente</span></div>
+          </div>
+          <p data-i18n="op_theory_p2">Il "guadagno di rumore" (1+Rf/R1) — non il guadagno di segnale, diverso nello stadio invertente — è ciò che amplifica la tensione di offset e stabilisce la reale larghezza di banda dello stadio, tramite il prodotto guadagno-banda (GBW) dell'op-amp.</p>
+          <div class="formula">errore ≈ |V<sub>os</sub>| · (1+Rf/R1) + |I<sub>b−</sub>| · Rf<span class="desc" data-i18n="op_f3_desc">Errore di offset in uscita (budget semplificato)</span></div>
+          <div class="formula">f<sub>-3dB</sub> = GBW / (1+Rf/R1)<span class="desc" data-i18n="op_f4_desc">Banda -3dB dello stadio</span></div>
+        </div>
       </div>
 
       <div class="panel">
@@ -1276,6 +1443,16 @@
       </div>
 
       <div class="panel">
+        <h3 data-i18n="panel_theory">Teoria e formule</h3>
+        <div class="theory">
+          <p data-i18n="km_theory_p1">Una mappa di Karnaugh dispone i mintermini di una funzione booleana in modo che due celle adiacenti (anche ai bordi, grazie al codice Gray) differiscano per una sola variabile: raggruppando celle a 1 adiacenti (in gruppi di 1, 2, 4, 8...) si eliminano le variabili che cambiano all'interno del gruppo.</p>
+          <div class="formula">2 celle → -1 variabile &nbsp;·&nbsp; 4 celle → -2 variabili &nbsp;·&nbsp; 8 celle → -3 variabili<span class="desc" data-i18n="km_f1_desc">Regola di adiacenza: raggruppare celle a 1 (potenze di 2) elimina le variabili che cambiano nel gruppo</span></div>
+          <p data-i18n="km_theory_p2">L'algoritmo di Quine-McCluskey automatizza questo procedimento: combina iterativamente i mintermini adiacenti fino a trovare tutti i "prime implicanti" (i gruppi non ulteriormente estendibili), poi seleziona un sottoinsieme minimo che copra tutti i mintermini richiesti — il metodo di Petrick entra in gioco quando la sola scelta dei prime implicanti essenziali non è sufficiente a garantire la copertura minima.</p>
+          <p data-i18n="km_theory_p3">Le celle "don't care" (X) possono essere incluse o meno in un gruppo, a seconda di cosa conviene per la semplificazione: il risultato è comunque corretto, perché il loro valore non è specificato dal problema.</p>
+        </div>
+      </div>
+
+      <div class="panel">
         <h3 data-i18n="km_panel_settings">Impostazioni</h3>
         <div class="config-row">
           <div class="field">
@@ -1354,22 +1531,6 @@
       <div class="panel">
         <h3 data-i18n="panel_checks">Verifiche e note</h3>
         <div class="checks" id="kmChecks"></div>
-      </div>
-
-      <div class="panel">
-        <h3 data-i18n="km_panel_gates_opt">Circuito ottimizzato</h3>
-        <p class="panel-hint" data-i18n="km_gates_opt_hint">Realizzazione a 2 livelli (AND-OR) dell'espressione minimizzata.</p>
-        <div class="chart-wrap">
-          <svg class="gates" id="kmGatesOpt" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet"></svg>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3 data-i18n="km_panel_gates_unopt">Circuito non ottimizzato (forma canonica)</h3>
-        <p class="panel-hint" data-i18n="km_gates_unopt_hint">Un termine AND per ogni mintermine dichiarato a 1, prima di qualunque semplificazione.</p>
-        <div class="chart-wrap">
-          <svg class="gates" id="kmGatesUnopt" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet"></svg>
-        </div>
       </div>
 
       <footer class="note" data-i18n="km_tool_footer">Minimizzazione a due livelli (somma di prodotti) tramite Quine-McCluskey con selezione dei prime implicanti essenziali e metodo di Petrick per la copertura ottima dei mintermini restanti. Supporta fino a 4 variabili.</footer>
